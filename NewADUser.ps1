@@ -63,3 +63,33 @@ ForEach ($DC in $DomainControllers.Name) {
 
 Invoke-Command -ComputerName "server.domain.local" -scriptblock {"C:\program Files\Windows Azure Active Directory Sync\DirSync\ImportModules.ps1"}
 Invoke-Command -ComputerName "server.domain.local" -command {"Start-OnlineCoexistenceSync"}
+
+connect-msolservice -credential $UserCredential
+
+Write-host "Setting Office 365 Account Password"
+
+
+Set-MsolUserPrincipalName -newuserprincipalname $un@domain.com -userprincipalname $un@lcgponline.onmicrosoft.com
+Set-MsolUser -UserPrincipalName "$un@domain.com" -UsageLocation US
+Set-MsolUserLicense -UserPrincipalName "$un@domain.com" -AddLicenses lcgponline:EXCHANGESTANDARD
+Set-MsolUserLicense -UserPrincipalName "$un@domain.com" -AddLicenses lcgponline:O365_BUSINESS
+Set-MsolUser -UserPrincipalName "$un@domain.com" -StrongPasswordRequired $False
+start-sleep -s 90
+Set-MsolUserPassword -UserPrincipalName "$un@domain.com" -NewPassword $PlainPassword -ForceChangePassword $false
+
+Get-ADUser $un -Properties * | Out-vCard
+
+$ol = New-Object -comObject Outlook.Application
+
+$mail = $ol.CreateItem(0)
+$Mail.Recipients.Add("all@domain.com")
+$mail.Subject = "Welcome New User $name"
+$mail.Body = "Please welcome our newest user $name.  Attached you will find his contact information that you can double click on and add to your Outlook contacts.  Admin Guy"
+$Mail.Attachments.Add("c:\users\Admin\desktop\$name.vcf")
+
+$mail.save()
+
+$inspector = $mail.GetInspector
+$inspector.Display()
+$Mail.send()
+
