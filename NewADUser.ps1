@@ -93,3 +93,7 @@ $inspector = $mail.GetInspector
 $inspector.Display()
 $Mail.send()
 
+Set-MailboxAutoReplyConfiguration $name -AutoReplyState enabled -ExternalAudience all -InternalMessage "The email address and advisor are no longer part of <Company>. If you need immediate assistance, please contact <OM> at <OM Email>, or call us at <Ph#>" -ExternalMessage "<Copy/Paste Here>"
+#Hides account from Exchange Address lists 
+Set-Mailbox $name -HiddenFromAddressListsEnabled $true
+
