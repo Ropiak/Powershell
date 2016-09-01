@@ -1,3 +1,5 @@
+#Put this file under your C:\users\username\my documents\windowspowershell\ folder
+
 function prompt
 {
     # New nice WindowTitle
