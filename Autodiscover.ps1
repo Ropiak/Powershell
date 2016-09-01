@@ -1,3 +1,5 @@
+##to see your environment's AutoDiscover settings used for Outlook.  Useful for when migrating from Exchange to Office 365.
+
 $obj = @()
  
 $ADDomain = Get-ADDomain | Select DistinguishedName
