@@ -1,3 +1,5 @@
+##Check the profile.ps1 file on my Github/Powershell folder and put it in your respective C:\users\username\my documents\windowspowershell\ folder to export the vcard for Outlook##
+
 ## This section prompts you for your Office 365 administrator credentials##
 
 $UserCredential = Get-Credential
