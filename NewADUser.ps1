@@ -71,10 +71,10 @@ connect-msolservice -credential $UserCredential
 Write-host "Setting Office 365 Account Password"
 
 
-Set-MsolUserPrincipalName -newuserprincipalname $un@domain.com -userprincipalname $un@lcgponline.onmicrosoft.com
+Set-MsolUserPrincipalName -newuserprincipalname $un@domain.com -userprincipalname $un@domain.onmicrosoft.com
 Set-MsolUser -UserPrincipalName "$un@domain.com" -UsageLocation US
-Set-MsolUserLicense -UserPrincipalName "$un@domain.com" -AddLicenses lcgponline:EXCHANGESTANDARD
-Set-MsolUserLicense -UserPrincipalName "$un@domain.com" -AddLicenses lcgponline:O365_BUSINESS
+Set-MsolUserLicense -UserPrincipalName "$un@domain.com" -AddLicenses domain:EXCHANGESTANDARD
+Set-MsolUserLicense -UserPrincipalName "$un@domain.com" -AddLicenses domain:O365_BUSINESS
 Set-MsolUser -UserPrincipalName "$un@domain.com" -StrongPasswordRequired $False
 start-sleep -s 90
 Set-MsolUserPassword -UserPrincipalName "$un@domain.com" -NewPassword $PlainPassword -ForceChangePassword $false
