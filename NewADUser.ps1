@@ -39,8 +39,8 @@ $result = $host.ui.PromptForChoice($title, $message, $options, 0)
 
 switch ($result)
     {
-        0 {set-ADUser $un -City "Portland" -Company "Company Name" -PostalCode "ZipCode" -State "State" -StreetAddress "Address1" -Title $Description -OfficePhone $Phone}
-        1 {set-ADUser $un -City "Salem" -Company "Company Name" -PostalCode "ZipCode" -State "State" -StreetAddress "Address2" -Title $Description -OfficePhone $Phone}
+        0 {set-ADUser $un -City "City1" -Company "Company Name" -PostalCode "ZipCode" -State "State" -StreetAddress "Address1" -Title $Description -OfficePhone $Phone}
+        1 {set-ADUser $un -City "City2" -Company "Company Name" -PostalCode "ZipCode" -State "State" -StreetAddress "Address2" -Title $Description -OfficePhone $Phone}
         2 {"Field"}
     }
 	
